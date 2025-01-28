@@ -1,0 +1,33 @@
+{
+    "name": "elmsellem/paysera-coding-challenge",
+    "description": "Paysera Coding Challenge",
+    "keywords": [],
+    "type": "project",
+    "autoload": {
+        "psr-4": {
+            "Elmsellem\\": "src"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Elmsellem\\Tests\\": "tests"
+        }
+    },
+    "require": {
+        "php": ">=7.0",
+        "ext-bcmath": "*"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^11.0.0",
+        "friendsofphp/php-cs-fixer": "^v3.0.0"
+    },
+    "config": {
+        "sort-packages": true
+    },
+    "scripts": {
+        "phpunit": "phpunit",
+        "fix-cs": "php-cs-fixer fix",
+        "test-cs": "php-cs-fixer fix --dry-run -v",
+        "test": ["@phpunit", "@test-cs"]
+    }
+}
