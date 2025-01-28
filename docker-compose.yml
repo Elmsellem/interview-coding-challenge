@@ -1,0 +1,14 @@
+version: "3.8"
+services:
+  php:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: php
+    environment:
+      - PHP_IDE_CONFIG=serverName=localhost
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    restart: unless-stopped
+    volumes:
+      - ./:/var/www/html
