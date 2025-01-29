@@ -1,6 +1,6 @@
 {
-    "name": "elmsellem/paysera-coding-challenge",
-    "description": "Paysera Coding Challenge",
+    "name": "elmsellem/interview-coding-challenge",
+    "description": "Interview Coding Challenge",
     "keywords": [],
     "type": "project",
     "autoload": {
@@ -11,10 +11,13 @@
     "autoload-dev": {
         "psr-4": {
             "Elmsellem\\Tests\\": "tests"
-        }
+        },
+        "files": [
+            "src/Support/helpers.php"
+        ]
     },
     "require": {
-        "php": ">=7.0",
+        "php": ">=8.3",
         "ext-bcmath": "*"
     },
     "require-dev": {
