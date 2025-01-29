@@ -4,29 +4,36 @@ namespace Elmsellem\Repositories;
 
 use Elmsellem\Enums\{ClientType, Currency, OperationType};
 use Elmsellem\Models\Operation;
-use Elmsellem\Support\FileSystem\AbstractFileReader;
-use Elmsellem\Support\FileSystem\ReaderFactory;
+use Elmsellem\Support\FileSystem\{AbstractFileReader, ReaderFactory};
 use Exception;
 
 class OperationRepository
 {
     private static ?array $cache = null;
     private AbstractFileReader $reader;
+    public static string $filePath;
 
     /**
      * @throws Exception
      */
-    public function __construct(private readonly string $filePath)
+    public function __construct()
     {
-        $this->reader = ReaderFactory::createFromPath($this->filePath);
+        $this->reader = ReaderFactory::createFromPath(self::$filePath);
+        $this->loadData();
     }
 
     public function getAll(): array
+    {
+        return self::$cache;
+    }
+
+    protected function loadData(): array
     {
         if (isset(self::$cache)) {
             return self::$cache;
         }
 
+        self::$cache = [];
         foreach ($this->reader->fetchData() as $data) {
             $operation = new Operation();
             $operation->setDate($data[0])
@@ -39,6 +46,6 @@ class OperationRepository
             self::$cache[] = $operation;
         }
 
-        return self::$cache ?? [];
+        return self::$cache;
     }
 }
