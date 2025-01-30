@@ -10,5 +10,8 @@ abstract class AbstractAmountResolver
     {
     }
 
+    /**
+     * Get the base amount for commission calculation
+     */
     abstract public function getCommissionBaseAmount(Operation $operation): string;
 }

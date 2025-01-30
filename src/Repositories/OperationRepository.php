@@ -27,6 +27,40 @@ class OperationRepository
         return self::$cache;
     }
 
+    public function findBy(array $filter): array
+    {
+        return array_filter(self::$cache, function (Operation $item) use ($filter) {
+            $condition = $item->getUserId() === $filter['userId'];
+
+            if ($filter['operationType']) {
+                $condition = $condition && $item->getOperationType() === $filter['operationType'];
+            }
+
+            if ($filter['startDate']) {
+                $condition = $condition && $item->getDate() >= $filter['startDate'];
+            }
+
+            if ($filter['endDate']) {
+                $condition = $condition && $item->getDate() <= $filter['endDate'];
+            }
+
+            return $condition;
+        });
+    }
+
+    public static function generateOperationKey(Operation $operation): string
+    {
+        return sprintf(
+            '%s_%s_%s_%s_%s_%s',
+            $operation->getDate(),
+            $operation->getUserId(),
+            $operation->getClientType()->value,
+            $operation->getOperationType()->value,
+            $operation->getAmount(),
+            $operation->getCurrency()->value,
+        );
+    }
+
     protected function loadData(): array
     {
         if (isset(self::$cache)) {
@@ -43,7 +77,9 @@ class OperationRepository
                 ->setAmount($data[4])
                 ->setCurrency(Currency::from($data[5]));
 
-            self::$cache[] = $operation;
+            $key = self::generateOperationKey($operation);
+
+            self::$cache[$key] = $operation;
         }
 
         return self::$cache;

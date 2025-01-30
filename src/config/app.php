@@ -2,6 +2,7 @@
 
 use Elmsellem\Enums\{ClientType, OperationType};
 use Elmsellem\Services\Commission\Calculators\PercentageCommission;
+use Elmsellem\Services\Commission\BaseAmountResolvers\PrivateWithdrawAmountResolver;
 
 return [
     'commissionRules' => [
@@ -29,6 +30,23 @@ return [
         ],
         [
             'operationType' => OperationType::WITHDRAW,
+            'clientType' => ClientType::PRIVATE,
+            'commissionCalculator' => [
+                'class' => PercentageCommission::class,
+                'options' => [
+                    'commission' => 0.3,
+                ],
+            ],
+            'commissionAmountResolver' => [
+                'class' => PrivateWithdrawAmountResolver::class,
+                'options' => [
+                    'maxFreeAmount' => 1000,
+                    'weeklyFreeOperationsNumber' => 3,
+                ],
+            ],
+        ],
+        [
+            'operationType' => OperationType::WITHDRAW,
             'clientType' => ClientType::BUSINESS,
             'commissionCalculator' => [
                 'class' => PercentageCommission::class,
@@ -39,6 +57,8 @@ return [
             'commissionAmountResolver' => null,
         ],
     ],
+
+    'baseCurrency' => 'EUR',
 
     'currencies' => [
         'EUR',

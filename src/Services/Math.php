@@ -26,7 +26,8 @@ class Math
         return bcdiv($a, $b);
     }
 
-    public static function roundUp(string $number, int $precision = 0): string {
+    public static function roundUp(string $number, int $precision = 0): string
+    {
         $factor = bcpow('10', (string)$precision);
         $scaled = bcmul($number, $factor, $precision + 1);
         $rounded = bcadd($scaled, '0.9', 0);
@@ -37,5 +38,10 @@ class Math
     public static function compare(string $a, string $b): int
     {
         return bccomp($a, $b);
+    }
+
+    public static function gt(string $a, string $b): bool
+    {
+        return static::compare($a, $b) === 1;
     }
 }
