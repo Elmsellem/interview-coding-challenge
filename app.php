@@ -1,7 +1,7 @@
 <?php
 
-use Elmsellem\Jobs\CalculateOperationsCommissionJob;
 use Elmsellem\Repositories\OperationRepository;
+use Elmsellem\Services\Commission\{CommissionCalculatorService, CommissionRulesRegistry};
 
 require __DIR__ . '/vendor/autoload.php';
 
@@ -12,5 +12,13 @@ bcscale(10);
 $fileName = $argv[1];
 OperationRepository::$filePath = $fileName;
 
-$commissionJob = new CalculateOperationsCommissionJob();
-$commissionJob->handle();
+$operationRepo = new OperationRepository();
+$registry = new CommissionRulesRegistry();
+$commissionService = new CommissionCalculatorService($registry);
+
+foreach ($operationRepo->getAll() as $operation) {
+    $commission = $commissionService->calculateCommission($operation);
+
+    echo $commission . PHP_EOL;
+}
+
