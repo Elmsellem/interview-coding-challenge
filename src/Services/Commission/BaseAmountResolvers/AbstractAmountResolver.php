@@ -1,6 +1,6 @@
 <?php
 
-namespace Elmsellem\Services\Commission\CommissionBaseAmountResolvers;
+namespace Elmsellem\Services\Commission\BaseAmountResolvers;
 
 use Elmsellem\Models\Operation;
 

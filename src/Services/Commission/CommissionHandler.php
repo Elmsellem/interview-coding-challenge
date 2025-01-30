@@ -4,7 +4,7 @@ namespace Elmsellem\Services\Commission;
 
 use Elmsellem\Models\Operation;
 use Elmsellem\Services\Commission\Calculators\AbstractCommission;
-use Elmsellem\Services\Commission\CommissionBaseAmountResolvers\AbstractAmountResolver;
+use Elmsellem\Services\Commission\BaseAmountResolvers\AbstractAmountResolver;
 
 class CommissionHandler
 {
