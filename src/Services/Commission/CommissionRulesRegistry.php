@@ -24,7 +24,6 @@ class CommissionRulesRegistry
                 $rule['clientType'],
                 $rule['commissionCalculator'],
                 $rule['commissionAmountResolver'] ?? null,
-                $rule['options'] ?? [],
             );
         }
     }
@@ -32,15 +31,16 @@ class CommissionRulesRegistry
     public function addRule(
         OperationType $operationType,
         ClientType    $clientType,
-        string        $calculatorClass,
-        ?string       $eligibilityClass = null,
-        array         $options = [],
+        array         $calculatorConfig,
+        ?array        $amountResolverConfig = null,
     ): void
     {
-        $calculator = new $calculatorClass($options);
-        $eligibility = $eligibilityClass ? new $eligibilityClass() : null;
+        $calculator = new $calculatorConfig['class']($calculatorConfig['options']);
+        $amountResolver = $amountResolverConfig ?
+            new $amountResolverConfig['class']($amountResolverConfig['options']) :
+            null;
 
-        $this->rules[$operationType->value][$clientType->value] = new CommissionHandler($calculator, $eligibility);
+        $this->rules[$operationType->value][$clientType->value] = new CommissionHandler($calculator, $amountResolver);
     }
 
     public function getCommissionHandler(OperationType $operationType, ClientType $clientType): CommissionHandler

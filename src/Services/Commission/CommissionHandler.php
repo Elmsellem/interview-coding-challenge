@@ -4,13 +4,13 @@ namespace Elmsellem\Services\Commission;
 
 use Elmsellem\Models\Operation;
 use Elmsellem\Services\Commission\Calculators\AbstractCommission;
-use Elmsellem\Services\Commission\CommissionBaseAmountResolvers\AmountResolverInterface;
+use Elmsellem\Services\Commission\CommissionBaseAmountResolvers\AbstractAmountResolver;
 
 class CommissionHandler
 {
     public function __construct(
-        protected AbstractCommission       $calculator,
-        protected ?AmountResolverInterface $amountResolver)
+        protected AbstractCommission      $calculator,
+        protected ?AbstractAmountResolver $amountResolver)
     {
     }
 

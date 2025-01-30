@@ -8,29 +8,35 @@ return [
         [
             'operationType' => OperationType::DEPOSIT,
             'clientType' => ClientType::PRIVATE,
-            'commissionCalculator' => PercentageCommission::class,
-            'commissionAmountResolver' => null,
-            'options' => [
-                'commission' => 0.03,
+            'commissionCalculator' => [
+                'class' => PercentageCommission::class,
+                'options' => [
+                    'commission' => 0.03,
+                ],
             ],
+            'commissionAmountResolver' => null,
         ],
         [
             'operationType' => OperationType::DEPOSIT,
             'clientType' => ClientType::BUSINESS,
-            'commissionCalculator' => PercentageCommission::class,
-            'commissionAmountResolver' => null,
-            'options' => [
-                'commission' => 0.03,
+            'commissionCalculator' => [
+                'class' => PercentageCommission::class,
+                'options' => [
+                    'commission' => 0.03,
+                ],
             ],
+            'commissionAmountResolver' => null,
         ],
         [
             'operationType' => OperationType::WITHDRAW,
             'clientType' => ClientType::BUSINESS,
-            'commissionCalculator' => PercentageCommission::class,
-            'commissionAmountResolver' => null,
-            'options' => [
-                'commission' => 0.5,
+            'commissionCalculator' => [
+                'class' => PercentageCommission::class,
+                'options' => [
+                    'commission' => 0.5,
+                ],
             ],
+            'commissionAmountResolver' => null,
         ],
     ],
 
