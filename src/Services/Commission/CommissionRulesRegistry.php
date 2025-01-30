@@ -23,7 +23,7 @@ class CommissionRulesRegistry
                 $rule['operationType'],
                 $rule['clientType'],
                 $rule['commissionCalculator'],
-                $rule['eligibilityChecker'] ?? null,
+                $rule['commissionAmountResolver'] ?? null,
                 $rule['options'] ?? [],
             );
         }

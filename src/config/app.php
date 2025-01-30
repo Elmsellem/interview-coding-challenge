@@ -9,7 +9,7 @@ return [
             'operationType' => OperationType::DEPOSIT,
             'clientType' => ClientType::PRIVATE,
             'commissionCalculator' => PercentageCommission::class,
-            'eligibilityChecker' => null,
+            'commissionAmountResolver' => null,
             'options' => [
                 'commission' => 0.03,
             ],
@@ -18,7 +18,7 @@ return [
             'operationType' => OperationType::DEPOSIT,
             'clientType' => ClientType::BUSINESS,
             'commissionCalculator' => PercentageCommission::class,
-            'eligibilityChecker' => null,
+            'commissionAmountResolver' => null,
             'options' => [
                 'commission' => 0.03,
             ],
@@ -27,7 +27,7 @@ return [
             'operationType' => OperationType::WITHDRAW,
             'clientType' => ClientType::BUSINESS,
             'commissionCalculator' => PercentageCommission::class,
-            'eligibilityChecker' => null,
+            'commissionAmountResolver' => null,
             'options' => [
                 'commission' => 0.5,
             ],
