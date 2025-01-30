@@ -21,3 +21,10 @@ if (!function_exists('config')) {
         return $config;
     }
 }
+
+if (!function_exists('env')) {
+    function env(string $var): string
+    {
+        return $_ENV[$var];
+    }
+}
