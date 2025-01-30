@@ -10,5 +10,5 @@ abstract class AbstractAmountResolver
     {
     }
 
-    abstract public function getCommissionBaseAmount(Operation $operation): float;
+    abstract public function getCommissionBaseAmount(Operation $operation): string;
 }

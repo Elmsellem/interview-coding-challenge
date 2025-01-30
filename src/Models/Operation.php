@@ -10,7 +10,7 @@ class Operation
     protected int $userId;
     protected ClientType $clientType;
     protected OperationType $operationType;
-    protected float $amount;
+    protected string $amount;
     protected Currency $currency;
 
     public function getDate(): string
@@ -57,12 +57,12 @@ class Operation
         return $this;
     }
 
-    public function getAmount(): float
+    public function getAmount(): string
     {
         return $this->amount;
     }
 
-    public function setAmount(float $amount): self
+    public function setAmount(string $amount): self
     {
         $this->amount = $amount;
         return $this;

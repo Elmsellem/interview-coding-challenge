@@ -45,4 +45,10 @@ return [
         'USD',
         'JPY',
     ],
+
+    'currencyDecimalPlaces' => [
+        'EUR' => 2,
+        'USD' => 2,
+        'JPY' => 0,
+    ],
 ];

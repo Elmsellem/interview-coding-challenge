@@ -2,6 +2,8 @@
 
 namespace Elmsellem\Services\Commission\Calculators;
 
+use Elmsellem\Services\Math;
+
 class PercentageCommission extends AbstractCommission
 {
     protected float $commission;
@@ -12,8 +14,8 @@ class PercentageCommission extends AbstractCommission
         $this->commission = $options['commission'];
     }
 
-    public function calculate(float $amount): float
+    public function calculate(string $amount): string
     {
-        return $amount * ($this->commission / 100);
+        return Math::multiply($amount, Math::divide($this->commission, 100));
     }
 }

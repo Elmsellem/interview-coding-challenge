@@ -14,7 +14,7 @@ class CommissionHandler
     {
     }
 
-    public function calculate(Operation $operation): float
+    public function calculate(Operation $operation): string
     {
         $amount = $operation->getAmount();
         if (!is_null($this->amountResolver)) {

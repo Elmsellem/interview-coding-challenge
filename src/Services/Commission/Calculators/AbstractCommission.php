@@ -8,5 +8,5 @@ abstract class AbstractCommission
     {
     }
 
-    abstract public function calculate(float $amount): float;
+    abstract public function calculate(string $amount): string;
 }

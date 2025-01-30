@@ -3,6 +3,7 @@
 namespace Elmsellem\Services\Commission;
 
 use Elmsellem\Models\Operation;
+use Elmsellem\Services\Math;
 
 class CommissionCalculatorService
 {
@@ -13,13 +14,15 @@ class CommissionCalculatorService
         $this->rulesRegistry = $ruleRegistry;
     }
 
-    public function calculateCommission(Operation $operation): float
+    public function calculateCommission(Operation $operation): string
     {
         $rule = $this->rulesRegistry->getCommissionHandler(
             $operation->getOperationType(),
             $operation->getClientType(),
         );
 
-        return $rule->calculate($operation);
+        $precision = config('app')['currencyDecimalPlaces'][$operation->getCurrency()->value];
+
+        return Math::roundUp($rule->calculate($operation), $precision);
     }
 }

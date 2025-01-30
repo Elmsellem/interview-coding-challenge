@@ -5,11 +5,11 @@ use Elmsellem\Repositories\OperationRepository;
 
 require __DIR__ . '/vendor/autoload.php';
 
-$fileName = $argv[1];
-if (empty($fileName)) {
-    throw new InvalidArgumentException('File name cannot be empty');
-}
+$dotenv = Dotenv\Dotenv::createImmutable(__DIR__);
+$dotenv->load();
 
+bcscale(10);
+$fileName = $argv[1];
 OperationRepository::$filePath = $fileName;
 
 $commissionJob = new CalculateOperationsCommissionJob();
