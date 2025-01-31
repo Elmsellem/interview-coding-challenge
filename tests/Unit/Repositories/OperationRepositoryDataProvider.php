@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Elmsellem\Tests\Repositories;
+namespace Elmsellem\Tests\Unit\Repositories;
 
 use Elmsellem\Enums\{ClientType, Currency, OperationType};
 use Elmsellem\Models\Operation;
