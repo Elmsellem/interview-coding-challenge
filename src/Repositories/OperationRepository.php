@@ -9,8 +9,8 @@ use Exception;
 
 class OperationRepository
 {
-    private static ?array $cache = null;
-    private AbstractFileReader $reader;
+    protected static ?array $cache = null;
+    protected AbstractFileReader $reader;
     public static string $filePath;
 
     /**
@@ -30,7 +30,11 @@ class OperationRepository
     public function findBy(array $filter): array
     {
         return array_filter(self::$cache, function (Operation $item) use ($filter) {
-            $condition = $item->getUserId() === $filter['userId'];
+            $condition = true;
+
+            if ($filter['userId']) {
+                $condition = $item->getUserId() === $filter['userId'];
+            }
 
             if ($filter['operationType']) {
                 $condition = $condition && $item->getOperationType() === $filter['operationType'];
@@ -61,10 +65,10 @@ class OperationRepository
         );
     }
 
-    protected function loadData(): array
+    protected function loadData(): void
     {
         if (isset(self::$cache)) {
-            return self::$cache;
+            return;
         }
 
         self::$cache = [];
@@ -81,7 +85,5 @@ class OperationRepository
 
             self::$cache[$key] = $operation;
         }
-
-        return self::$cache;
     }
 }
