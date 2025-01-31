@@ -7,16 +7,16 @@ use DateTime;
 use Elmsellem\Enums\{Currency, OperationType};
 use Elmsellem\Models\Operation;
 use Elmsellem\Repositories\OperationRepository;
-use Elmsellem\Services\{CurrencyConversionService, Math};
+use Elmsellem\Services\{CurrencyConversionInterface, CurrencyConversionService, Math};
 use GuzzleHttp\Exception\GuzzleException;
 
 class PrivateWithdrawAmountResolver extends AbstractAmountResolver
 {
     protected OperationRepository $operationRepository;
-    protected CurrencyConversionService $currencyService;
-    private float $maxFreeAmount;
-    private int $weeklyFreeOperationsNumber;
-    private Currency $baseCurrency;
+    protected CurrencyConversionInterface $currencyService;
+    protected float $maxFreeAmount;
+    protected int $weeklyFreeOperationsNumber;
+    protected Currency $baseCurrency;
 
     public function __construct(array $options = [])
     {
@@ -37,12 +37,6 @@ class PrivateWithdrawAmountResolver extends AbstractAmountResolver
      */
     public function getCommissionBaseAmount(Operation $operation): string
     {
-        $amount = $this->currencyService->convert(
-            $operation->getCurrency(),
-            $this->baseCurrency,
-            $operation->getAmount(),
-        );
-
         $monday = new DateTime($operation->getDate());
         $sunday = new DateTime($operation->getDate());
         $monday = $monday->modify('Monday this week')->format('Y-m-d');
@@ -58,8 +52,14 @@ class PrivateWithdrawAmountResolver extends AbstractAmountResolver
         /** Return the operation amount if it exceeds the weekly free operations limit. */
         $operationNumber = $this->getOperationNumber($operation, $weekOperations);
         if ($operationNumber > $this->weeklyFreeOperationsNumber) {
-            return $amount;
+            return $operation->getAmount();
         }
+
+        $amount = $this->currencyService->convert(
+            $operation->getCurrency(),
+            $this->baseCurrency,
+            $operation->getAmount(),
+        );
 
         $baseAmount = $this->getBaseWithFreeAmount($operationNumber, $amount, $weekOperations);
 
