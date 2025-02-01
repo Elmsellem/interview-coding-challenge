@@ -2,16 +2,28 @@
 
 <!-- http://www.phpunit.de/manual/current/en/appendixes.configuration.html -->
 <phpunit
-    backupGlobals               = "false"
-    backupStaticProperties      = "false"
-    colors                      = "true"
-    processIsolation            = "false"
-    stopOnFailure               = "false"
-    bootstrap                   = "vendor/autoload.php" >
+        backupGlobals="false"
+        backupStaticProperties="false"
+        colors="true"
+        processIsolation="false"
+        stopOnFailure="false"
+        bootstrap="vendor/autoload.php">
 
     <testsuites>
         <testsuite name="Project Test Suite">
             <directory>tests</directory>
         </testsuite>
     </testsuites>
+
+    <source restrictNotices="true" restrictWarnings="true">
+        <include>
+            <directory>src</directory>
+        </include>
+        <exclude>
+            <directory>src/config</directory>
+            <directory>src/DTOs</directory>
+            <directory>src/Enums</directory>
+            <directory>src/Models</directory>
+        </exclude>
+    </source>
 </phpunit>
