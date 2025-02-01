@@ -119,3 +119,9 @@ Classes: 46.67% (7/15)
 Methods: 79.49% (31/39)  
 Lines:   82.38% (159/193)
 ```
+
+### Things to Improve
+
+- **Dependency Injection**: Use a DI library like Symfony DI or Laravel Service Container to manage class dependencies instead of creating them manually. This will make the code easier to maintain and test.
+
+- **Caching API Data**: Use a cache system like Redis to store API data. This will speed up the app by reducing repeated API calls.
