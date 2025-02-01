@@ -20,7 +20,8 @@ docker compose run --rm php bash
 # install dependencies
 composer install
 
-# Copy env file and update the `EXCHANGE_RATES_API_KEY` var, you can use `9bedae7b9d0f13d8069fa36c6399`
+# Copy env file and update the `EXCHANGE_RATES_API_KEY` var
+# You can use `9bedae7b9d0f13d8069fa36c63ff8699`
 cp .env.example .env
 
 # run unit tests
