@@ -10,8 +10,8 @@ class CommissionHandler
 {
     public function __construct(
         protected AbstractCommission      $calculator,
-        protected ?AbstractAmountResolver $amountResolver)
-    {
+        protected ?AbstractAmountResolver $amountResolver
+    ) {
     }
 
     public function calculate(Operation $operation): string

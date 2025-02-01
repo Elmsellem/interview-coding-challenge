@@ -84,7 +84,7 @@ class PrivateWithdrawAmountResolver extends AbstractAmountResolver
 
     /**
      * Get the base amount for commission calculation after applying the maximum free commission amount.
-     * 
+     *
      * @throws GuzzleException
      */
     protected function getBaseWithFreeAmount(int $position, string $operationAmount, array $weekOperations): string

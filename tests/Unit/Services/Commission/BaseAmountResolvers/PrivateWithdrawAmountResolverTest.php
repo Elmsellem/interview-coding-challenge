@@ -52,8 +52,7 @@ class PrivateWithdrawAmountResolverTest extends TestCase
         array     $weekOperations,
         ?string   $calculatedAmount,
         string    $expectedAmount,
-    )
-    {
+    ) {
         bcscale(10);
         $resolverMock = Mockery::mock(PrivateWithdrawAmountResolver::class)->makePartial();
         $resolverMock->shouldAllowMockingProtectedMethods();
@@ -143,8 +142,7 @@ class PrivateWithdrawAmountResolverTest extends TestCase
         Currency $baseCurrency,
         float    $maxFreeAmount,
         string   $expectedAmount,
-    )
-    {
+    ) {
         bcscale(10);
         $resolverMock = Mockery::mock(PrivateWithdrawAmountResolver::class);
         $currencyServiceMock = Mockery::mock(CurrencyConversionInterface::class);

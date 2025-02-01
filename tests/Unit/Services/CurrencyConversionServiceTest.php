@@ -2,7 +2,6 @@
 
 namespace Elmsellem\Tests\Unit\Services;
 
-
 use Elmsellem\DTOs\ExchangeRatesDTO;
 use Elmsellem\Enums\Currency;
 use Elmsellem\Services\{CurrencyConversionService, ExchangeRatesService};
@@ -42,8 +41,7 @@ class CurrencyConversionServiceTest extends TestCase
         string           $amount,
         ExchangeRatesDTO $rates,
         string           $expected,
-    )
-    {
+    ) {
         bcscale(10);
         $mockExchangeRatesService = Mockery::mock(ExchangeRatesService::class);
         $service = Mockery::mock(CurrencyConversionService::class)->makePartial();

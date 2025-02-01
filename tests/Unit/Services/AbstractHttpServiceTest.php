@@ -2,7 +2,6 @@
 
 namespace Elmsellem\Tests\Unit\Services;
 
-
 use Elmsellem\Services\AbstractHttpService;
 use Elmsellem\Tests\ReflectionHelper;
 use GuzzleHttp\Client;

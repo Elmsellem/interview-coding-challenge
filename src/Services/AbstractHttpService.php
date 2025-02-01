@@ -14,8 +14,7 @@ abstract class AbstractHttpService
         protected string $baseUri,
         protected int    $retryCount = 3,
         protected int    $retryDelay = 1000,
-    )
-    {
+    ) {
         $this->client = $this->createClient();
     }
 
@@ -25,7 +24,7 @@ abstract class AbstractHttpService
 
         $stack->push(Middleware::retry(
             $this->getRetryDecider(),
-            fn($retries) => RetryMiddleware::exponentialDelay($retries),
+            fn ($retries) => RetryMiddleware::exponentialDelay($retries),
         ));
 
         return new Client([

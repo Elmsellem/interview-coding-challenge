@@ -35,8 +35,7 @@ class CommissionRulesRegistry
         ClientType    $clientType,
         array         $calculatorConfig,
         ?array        $amountResolverConfig = null,
-    ): void
-    {
+    ): void {
         $calculator = new $calculatorConfig['class']($calculatorConfig['options']);
         $amountResolver = $amountResolverConfig ?
             new $amountResolverConfig['class']($amountResolverConfig['options']) :

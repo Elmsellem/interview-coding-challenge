@@ -2,12 +2,10 @@
 
 namespace Elmsellem\Support\FileSystem;
 
-use Exception;
-
 class ReaderFactory
 {
     /**
-     * @throws Exception
+     * @throws \Exception
      */
     public static function createFromPath(string $filePath): AbstractFileReader
     {
@@ -15,7 +13,7 @@ class ReaderFactory
 
         return match (strtolower($extension)) {
             'csv' => new CSVReader($filePath),
-            default => throw new Exception('Unsupported file type: ' . $extension),
+            default => throw new \Exception('Unsupported file type: '.$extension),
         };
     }
 }

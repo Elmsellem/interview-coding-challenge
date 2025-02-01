@@ -15,7 +15,8 @@ class ExchangeRatesDTO
         public string $base,
         public string $date,
         public array $rates,
-    ) {}
+    ) {
+    }
 
     public static function fromArray(array $data): self
     {
