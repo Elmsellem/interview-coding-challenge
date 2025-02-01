@@ -7,14 +7,16 @@ use InvalidArgumentException;
 
 class CommissionRulesRegistry
 {
-    private array $rules = [];
+    protected array $rules = [];
 
     public function __construct()
     {
-        $this->loadRules();
     }
 
-    protected function loadRules(): void
+    /**
+     * Load commission calculation rules from commissionRules config in app.php.
+     */
+    public function loadRules(): void
     {
         $rules = config('app')['commissionRules'] ?? [];
 

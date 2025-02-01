@@ -16,9 +16,10 @@ $operationRepo = new OperationRepository();
 $registry = new CommissionRulesRegistry();
 $commissionService = new CommissionCalculatorService($registry);
 
+$registry->loadRules();
+
 foreach ($operationRepo->getAll() as $operation) {
     $commission = $commissionService->calculateCommission($operation);
 
     echo $commission . PHP_EOL;
 }
-
