@@ -7,11 +7,14 @@ use Elmsellem\Services\{Commission\BaseAmountResolvers\AbstractAmountResolver,
     Commission\Calculators\AbstractCommission,
     Commission\CommissionHandler};
 use Mockery;
+use Mockery\Adapter\Phpunit\MockeryPHPUnitIntegration;
 use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\TestCase;
 
 class CommissionHandlerTest extends TestCase
 {
+    use MockeryPHPUnitIntegration;
+
     #[DataProvider('calculateProvider')]
     public function testCalculate(bool $setResolver, string $baseAmount): void
     {

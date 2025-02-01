@@ -9,9 +9,12 @@ use Elmsellem\Services\{Commission\CommissionCalculatorService,
     Commission\CommissionRulesRegistry};
 use Mockery;
 use PHPUnit\Framework\{Attributes\After, Attributes\Before, TestCase};
+use Mockery\Adapter\Phpunit\MockeryPHPUnitIntegration;
 
 class CommissionCalculatorServiceTest extends TestCase
 {
+    use MockeryPHPUnitIntegration;
+
     private int $currentBcScale;
 
     #[Before]
