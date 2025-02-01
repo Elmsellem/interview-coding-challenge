@@ -7,6 +7,7 @@ use Elmsellem\Services\AbstractHttpService;
 use Elmsellem\Tests\ReflectionHelper;
 use GuzzleHttp\Client;
 use Mockery;
+use Mockery\Adapter\Phpunit\MockeryPHPUnitIntegration;
 use PHPUnit\Framework\Attributes\TestWith;
 use PHPUnit\Framework\TestCase;
 use Psr\Http\Message\{RequestInterface, ResponseInterface};
@@ -14,6 +15,8 @@ use ReflectionException;
 
 class AbstractHttpServiceTest extends TestCase
 {
+    use MockeryPHPUnitIntegration;
+
     /**
      * @throws ReflectionException
      */
