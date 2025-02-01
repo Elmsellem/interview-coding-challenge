@@ -26,6 +26,6 @@ class ExchangeRatesService extends AbstractHttpService
 
         $response = $this->client->get('');
 
-        return self::$cache = ExchangeRatesDTO::fromArray($this->toJson($response));
+        return self::$cache = ExchangeRatesDTO::fromArray($this->toDecodedJson($response));
     }
 }

@@ -44,7 +44,7 @@ abstract class AbstractHttpService
         };
     }
 
-    protected function toJson(ResponseInterface $response): array
+    protected function toDecodedJson(ResponseInterface $response): array
     {
         return json_decode($response->getBody()->getContents(), true) ?? [];
     }

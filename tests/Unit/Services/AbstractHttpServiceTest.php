@@ -71,7 +71,7 @@ class AbstractHttpServiceTest extends TestCase
         $response = Mockery::mock(ResponseInterface::class);
         $response->shouldReceive('getBody->getContents')->andReturn('{"key": "value"}');
 
-        $result = $mockHttpService->toJson($response);
+        $result = $mockHttpService->toDecodedJson($response);
         $this->assertEquals(['key' => 'value'], $result);
     }
 }
