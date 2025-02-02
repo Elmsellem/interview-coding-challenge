@@ -4,6 +4,7 @@ namespace Elmsellem\Services;
 
 use Elmsellem\DTOs\ExchangeRatesDTO;
 use GuzzleHttp\Exception\GuzzleException;
+use RuntimeException;
 
 class ExchangeRatesService extends AbstractHttpService
 {
@@ -25,7 +26,12 @@ class ExchangeRatesService extends AbstractHttpService
         }
 
         $response = $this->client->get('');
+        $data = $this->toDecodedJson($response);
+        if ($data['success'] !== true) {
+            $msg = $data['error']['info'] ?? 'Request failed. Unable to retrieve exchange rates.';
+            throw new RuntimeException($msg);
+        }
 
-        return self::$cache = ExchangeRatesDTO::fromArray($this->toDecodedJson($response));
+        return self::$cache = ExchangeRatesDTO::fromArray($data);
     }
 }

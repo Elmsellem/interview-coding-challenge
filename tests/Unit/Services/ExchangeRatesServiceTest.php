@@ -12,6 +12,7 @@ use Mockery\Adapter\Phpunit\MockeryPHPUnitIntegration;
 use PHPUnit\Framework\TestCase;
 use Psr\Http\Message\ResponseInterface;
 use ReflectionException;
+use RuntimeException;
 
 class ExchangeRatesServiceTest extends TestCase
 {
@@ -40,6 +41,7 @@ class ExchangeRatesServiceTest extends TestCase
     {
         $responseMock = Mockery::mock(ResponseInterface::class);
         $responseMock->shouldReceive('getBody->getContents')->andReturn(json_encode([
+            'success' => true,
             'base' => 'EUR',
             'rates' => ['USD' => 1.18, 'JPY' => 130.15],
             'timestamp' => 1627654321,
@@ -73,5 +75,24 @@ class ExchangeRatesServiceTest extends TestCase
         $rates = $this->service->getExchangeRates();
 
         $this->assertSame($cachedRates, $rates);
+    }
+
+    /**
+     * @throws ReflectionException
+     * @throws GuzzleException
+     */
+    public function testGetExchangeRatesWithException(): void
+    {
+        $responseMock = Mockery::mock(ResponseInterface::class);
+        $responseMock->shouldReceive('getBody->getContents')->andReturn(json_encode([
+            'success' => false,
+        ]));
+
+        $this->mockClient->shouldReceive('get')->andReturn($responseMock);
+        ReflectionHelper::setProtectedProperty($this->service, 'cache', null);
+
+        $this->expectException(RuntimeException::class);
+
+        $this->service->getExchangeRates();
     }
 }
