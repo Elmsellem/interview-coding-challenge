@@ -103,26 +103,27 @@ composer coverage-html
 *Note: The `src/Support` directory is not covered by unit tests.*
 
 ```
-Runtime:       PHP 8.3.16
+Runtime:       PHP 8.3.16 with Xdebug 3.4.1
 Configuration: /var/www/html/phpunit.xml.dist
 
-..........................................................        58 / 58 (100%)
+...........................................................       59 / 59 (100%)
 
-Time: 00:00.142, Memory: 14.00 MB
+Time: 00:01.347, Memory: 18.00 MB
 
-OK (58 tests, 99 assertions)
+OK (59 tests, 100 assertions)
 
-Code Coverage Report:      
-2025-02-01 22:02:30      
-                   
-Summary:                  
-Classes: 46.67% (7/15)   
-Methods: 79.49% (31/39)  
-Lines:   82.38% (159/193)
+
+Code Coverage Report:
+  2025-02-03 08:13:09
+
+ Summary:
+  Classes: 46.67% (7/15)
+  Methods: 79.49% (31/39)
+  Lines:   82.74% (163/197)
 ```
 
 ### Things to Improve
 
 - **Dependency Injection**: Use a DI library like Symfony DI or Laravel Service Container to manage class dependencies instead of creating them manually. This will make the code easier to maintain and test.
 
-- **Caching API Data**: Use a cache system like Redis to store API data. This will speed up the app by reducing repeated API calls.
+- **Caching Data**: Use a cache system like Redis instead of caching data in static vars.
